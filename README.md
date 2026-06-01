@@ -1,4 +1,4 @@
-# BLUCL-for-BMVC-2026
+# Official Implementation of the BLUCL Framework Currently Under Review with BMVC 2026
 
 # BLUCL: Boundary-guided Lightweight Unified Contrastive Learning Framework for Polyp Segmentation
 
