@@ -239,7 +239,21 @@ class SpatialAttentionModule(nn.Module):
 
 # Boundary-guided Contextual Attention (BCA) Module
 ## Extracts boundary-sensitive structural information from feature maps using morphological operations.
+class BoundaryExtractor(nn.Module):
+    def __init__(self, kernel_size=5):
+        super().__init__()
+        
+        # Size of local neighborhood used for morphology
+        self.kernel_size = kernel_size
+        #  Padding to preserve spatial dimensions
+        self.padding = kernel_size // 2
 
+    def forward(self, x):
+        dilation = F.max_pool2d(x, self.kernel_size, 1, self.padding) # Morphological Dilation
+        erosion = -F.max_pool2d(-x, self.kernel_size, 1, self.padding) # Morphological Erosion
+        boundary = dilation - erosion # Morphological Gradient
+        return erosion, boundary
+        
 class BGAttention(nn.Module):
     def __init__(self, channels, kernel_size=3):
         super().__init__()
