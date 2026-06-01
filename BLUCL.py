@@ -558,4 +558,5 @@ class BLUCL(nn.Module):
 
         return seg_out
 
-  
+
+# Prototype-learning modules are omitted from the current public release.
