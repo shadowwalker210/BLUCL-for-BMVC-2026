@@ -522,13 +522,13 @@ class BLUCL(nn.Module):
         self.encoder = encoder #CLEncoder(in_channels=in_channels)
 
         # Contrastive Learning Branch
-        self.projection_head = projection_head #ConvProjectionHead(in_dim=32,out_dim=proj_dim)
+        self.projection_head = projection_head 
 
         # Segmentation Branch
         self.seg_decoder = seg_decoder #SegDecoder()
         
         # Prototype Layer
-        self.prototype_layer = prototype_layer #PrototypeLayer(num_prototypes=100, dim=proj_dim)
+        self.prototype_layer = prototype_layer
         
     def forward(self, x, mode="seg"):
 
