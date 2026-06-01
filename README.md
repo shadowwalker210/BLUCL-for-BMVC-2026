@@ -11,4 +11,4 @@ Timely diagnosis of pre-malignant polyps is crucial for early detection of color
 
 This repository contains the core implementation of the BLUCL architecture, including the proposed Boundary-guided Contextual Attention (BCA) and Scale-aware Context Aggregation Block (SCAB).
 
-Pretrained model weights are provided to facilitate inference and evaluation. The complete training pipeline, optimization code, and experimental scripts will be released upon receiving a publication decision.
+The complete training pipeline, optimization code, and experimental scripts will be released upon receiving a publication decision. Furthermore, pretrained model weights will be provided to facilitate inference and evaluation.
