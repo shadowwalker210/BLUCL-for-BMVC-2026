@@ -254,40 +254,14 @@ class BoundaryExtractor(nn.Module):
         boundary = dilation - erosion # Morphological Gradient
         return erosion, boundary
         
-class BGAttention(nn.Module):
-    def __init__(self, channels, kernel_size=3):
-        super().__init__()
-        self.boundary_ext = BoundaryExtractor(kernel_size=kernel_size)
-        self.channel_att = ChannelAttentionModule(channels)
-        self.spatial_att = nn.Sequential(
-                    nn.Conv2d(4, 64, kernel_size=3, padding=1, bias=False),
-                    nn.ReLU(inplace=True),
-                    nn.Conv2d(64, 32, kernel_size=3, padding=1, bias=False),
-                    nn.ReLU(inplace=True),
-                    nn.Conv2d(32, 1, kernel_size=3, padding=1, bias=False),
-                    nn.Sigmoid())
-
-    def forward(self, x):
-        
-        # Channel Attention
-        channel_att = self.channel_att(x)
-        feat_refined = torch.mul(x,channel_att) # feat_sum * channel_att
-        
-        # Morphological Boundary Extraction
-        interior_feat, boundary_feat = self.boundary_ext(feat_refined) # returns erosion, boundary
-        # Spatial Descriptors
-        s_avg = torch.mean(feat_refined, dim=1, keepdim=True) # spatial
-        s_max, _ = torch.max(feat_refined, dim=1, keepdim=True) # spatial
-        s_interior = torch.mean(interior_feat, dim=1, keepdim=True)
-        s_boundary = torch.mean(boundary_feat, dim=1, keepdim=True)
-    
-        # -----------------------------
-        # Boundary-Guided Spatial Attention
-        # -----------------------------
-        spatial_input = torch.cat([s_avg, s_max, s_interior, s_boundary], dim=1)
-        spatial_att = self.spatial_att(spatial_input)
-        
-        return feat_refined * spatial_att
+# ------------------------------------------------------------------
+# Boundary-guided Contextual Attention (BCA) module implementation
+# has been omitted from the current public release.
+#
+# The complete implementation, training pipeline, and associated
+# experimental components will be made available upon acceptance
+# and publication of the corresponding manuscript.
+# ------------------------------------------------------------------
 
 
 # A. Contrastive Learning Branch
