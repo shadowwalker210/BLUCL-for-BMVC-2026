@@ -254,14 +254,10 @@ class BoundaryExtractor(nn.Module):
         boundary = dilation - erosion # Morphological Gradient
         return erosion, boundary
         
-# ------------------------------------------------------------------
-# Boundary-guided Contextual Attention (BCA) module implementation
-# has been omitted from the current public release.
-#
-# The complete implementation, training pipeline, and associated
-# experimental components will be made available upon acceptance
-# and publication of the corresponding manuscript.
-# ------------------------------------------------------------------
+# NOTE:
+# The implementation of the proposed Boundary-guided Contextual
+# Attention (BCA) module is not included in this public release.
+# Full source code will be released upon publication.
 
 
 # A. Contrastive Learning Branch
